@@ -1,0 +1,98 @@
+String:
+  String__append:
+    value: 6
+    tests:
+      - String__append_0
+      - RESERVE_String__append_different_lengths
+      - RESERVE_String__append_empty_to_empty
+      - RESERVE_String__append_to_empty
+  
+  String__at:
+    value: 15
+    tests:
+      - String__at_0
+      - RESERVE_String__at_with_longer_string
+      - RESERVE_String__at_out_of_bounds
+  
+  String__back:
+    value: 15
+    tests:
+      - String__back_0
+  
+  String__clear:
+    value: 6
+    tests:
+      - String__clear_0
+      - RESERVE_String__clear_and_verify_empty
+  
+  String__empty:
+    value: 6
+    tests:
+      - String__empty_0
+      - RESERVE_String__init_empty_string
+  
+  String__erase:
+    value: 6
+    tests:
+      - String__erase_0
+      - RESERVE_String__erase_middle_portion
+      - RESERVE_String__erase_at_beginning
+      - RESERVE_String__erase_to_end
+  
+  String__front:
+    value: 6
+    tests:
+      - String__front_0
+  
+  String__insert:
+    value: 6
+    tests:
+      - String__insert_0
+      - RESERVE_String__insert_at_beginning
+      - RESERVE_String__insert_at_middle
+      - RESERVE_String__insert_at_end
+      - RESERVE_String__insert_empty_string
+  
+  String__length:
+    value: 6
+    tests:
+      - String__length_0
+  
+  String__pop_back:
+    value: 6
+    tests:
+      - String__pop_back_0
+      - RESERVE_String__pop_back_consistency
+  
+  String__push_back:
+    value: 6
+    tests:
+      - String__push_back_0
+      - RESERVE_String__push_back_multiple_chars
+      - RESERVE_String__push_back_special_chars
+  
+  String__replace:
+    value: 10
+    tests:
+      - String__replace_0
+      - RESERVE_String__replace_shorter_with_longer
+      - RESERVE_String__replace_longer_with_shorter
+      - RESERVE_String__replace_entire_string
+  
+  String__reserve:
+    value: 2
+    tests:
+      - String__reserve_0
+  
+  String__resize:
+    value: 2
+    tests:
+      - String__resize_0
+      - RESERVE_String__resize_with_different_char
+      - RESERVE_String__resize_shrink
+      - RESERVE_String__resize_to_zero
+  
+  String__swap:
+    value: 2
+    tests:
+      - String__swap_0
