@@ -10,14 +10,39 @@ typedef struct CPP_String {
   size_t capacity; // Size of the underlying buffer
 } String;
 
+
+/**
+ * Initilize a new String (CPP_String) strct from a given c-string
+ * @param input_c_str
+ * @return A new String struct
+ */
 String String__init(char* input_c_str);
 
+/**
+ * Frees components of the String struct
+ * @param str
+ */
 void String__delete(String* str);
 
+/**
+ * Gets the length of the given string, excluding null-terminator
+ * @param str
+ * @return length of given string struct
+ */
 size_t String__length(const String* str);
 
+/**
+ * Gets the capacity of the given String struct, which may be longer than just a single null-terminator
+ * @param str
+ * @return
+ */
 size_t String__capacity(const String* str);
 
+/**
+ * Increases capacity of given String struct to give new_size, if appropriate, otherwise leaves it untouched.
+ * @param str
+ * @param new_size
+ */
 void String__reserve(String* str, size_t new_capacity);
 
 /**
