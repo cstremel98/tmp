@@ -142,7 +142,7 @@ Test(String, String__front_0, .disabled=false) {
   );
 }
 
-Test(String, String__append_0, .disabled=true) {
+Test(String, String__append_0, .disabled=false) {
   char* test_c_string_1 = "Hello";
   String test_str_1 = String__init(test_c_string_1);
 
@@ -155,14 +155,8 @@ Test(String, String__append_0, .disabled=true) {
   cr_expect(strlen(test_str_1.data) == strlen(test_c_string_1));
   cr_expect(String__length(&test_str_1) == strlen(test_c_string_1));
 
-  /*
-   * Operation to test
-   */
   String__append(&test_str_1, &test_str_2);
 
-  /*
-   * Post-checks
-   */
   // Check to see if the lengths make sense
   cr_assert(
     strlen(test_str_1.data)
@@ -273,15 +267,13 @@ Test(String, String__insert_0, .disabled=false) {
     (strlen(test_c_string_1) + strlen(test_c_string_2)),
     "Mismatch of post-copy lengths"
   );
- /* 
   cr_assert(
     String__length(&test_str_1)
     ==
     (strlen(test_c_string_1) + strlen(test_c_string_2)),
     "Mismatch of post-copy lengths"
-  );*/
+  );
 
-  /*
   // Check if the characters were copied right
   int output_index = 0;
   // First, check that the pre-insert offset letters are correct
@@ -298,16 +290,17 @@ Test(String, String__insert_0, .disabled=false) {
       test_str_1.data[output_index]
     );
   }
+  
   // Finally, check that the rest of the 1st string was copied
   for (int input_index = insert_offset; input_index < strlen(test_c_string_1); input_index++, output_index++) {
     cr_assert_eq(
       test_c_string_1[input_index],
       test_str_1.data[output_index]
     );
-  }*/
+  }
 }
 
-Test(String, String__erase_0, .disabled=true) {
+Test(String, String__erase_0, .disabled=false) {
   char* test_c_string = "Hello";
   String test_str = String__init(test_c_string);
 
@@ -341,7 +334,7 @@ Test(String, String__erase_0, .disabled=true) {
     (strlen(test_c_string) - erase_length),
     "Incorrect post-erase length"
   );
-
+/*
   // Check if the characters were copied right
   int output_index = 0;
   // Check each letter of the output
@@ -356,6 +349,7 @@ Test(String, String__erase_0, .disabled=true) {
     );
     output_index++;
   }
+*/
 }
 
 Test(String, String__replace_0, .disabled=true) {

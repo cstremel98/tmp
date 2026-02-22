@@ -101,7 +101,23 @@ char String__front(String* str) {
 }
 
 void String__append(String* str, const String* str_to_add) {
-  // todo
+	
+	size_t new_len = str->length + str_to_add->length;
+	char* tmp = realloc(str->data, new_len+1);
+	if(tmp == NULL) {
+	} else {
+		str->data = tmp;
+	}
+
+	int it = 0;
+	for(int i=str->length; i<new_len; i++) {
+		str->data[i] = str_to_add->data[it];
+		it++;
+	}
+	str->data[new_len] = '\0';
+
+	str->length = new_len;
+
 }
 
 void String__push_back(String* str, const char char_to_add) {
@@ -113,24 +129,43 @@ void String__pop_back(String* str) {
 }
 
 void String__insert(String* str, const String* str_to_insert, size_t index) {
-
-	size_t old_len = strlen(str->data);
-	size_t new_len = strlen(str_to_insert->data);
 	
-	str->length = new_len + old_len;
+	size_t new_len = str->length + str_to_insert->length;
+	char* tmp = realloc(str->data, new_len+1);
+	str->data = tmp;
 
-	// String__init
-		// size_t length_of_string = strlen(input_c_str);
-		// new_str.capacity = length_of_string + 1;
-	str->capacity = str->length+1; // new_cap = (new_len + old_len) + 1
-
-	str->data = realloc(str->data, str->capacity);
-	strncpy(str->data, str_to_insert->data, index);
+	int it = index;
+	for(int i=str_to_insert->length + index; i<new_len; i++) {
+		str->data[i] = str->data[it];
+		it++;
+	}
+	str->data[new_len] = '\0';
+	
+	it = 0;
+	for(int i=index; i<str_to_insert->length + index; i++) {
+		str->data[i] = str_to_insert->data[it];
+		it++;
+	}
+	
+	str->length = new_len;
 
 }
 
 void String__erase(String* str, size_t pos, size_t len) {
-  // todo
+
+	
+	for(int i=pos; i<str->length; i++) {
+		for(int j=i; j<str->capacity-2; j++) {
+			char* tmp = str->data[j];
+			str->data[j] = str->data[j+1];
+			str->data[j+1] = tmp;
+		}
+	}
+	str->length = str->length - len;
+	str->data[str->length] = '\0';
+	
+	str->data = realloc(str->data, str->length+1);
+
 }
 
 void String__replace(String* str, size_t pos, size_t len, const String* str_to_replace_with) {
