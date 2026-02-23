@@ -121,11 +121,16 @@ void String__append(String* str, const String* str_to_add) {
 }
 
 void String__push_back(String* str, const char char_to_add) {
-  // todo
+	str->data[str->length] = char_to_add;
+	str->length += 1;
+	str->capacity += 1;
 }
 
 void String__pop_back(String* str) {
-  // todo
+	str->data[str->length-1] = str->data[str->length];
+	str->length -= 1;
+	str->capacity -= 1;
+	char* tmp = realloc(str->data, str->capacity-1);
 }
 
 void String__insert(String* str, const String* str_to_insert, size_t index) {
@@ -153,14 +158,14 @@ void String__insert(String* str, const String* str_to_insert, size_t index) {
 
 void String__erase(String* str, size_t pos, size_t len) {
 
-	
-	for(int i=pos; i<str->length; i++) {
-		for(int j=i; j<str->capacity-2; j++) {
-			char* tmp = str->data[j];
+	for(int i=pos; i<=len; i++) {
+		for(int j=i; j<str->length; j++) {
+			char tmp = str->data[j];
 			str->data[j] = str->data[j+1];
 			str->data[j+1] = tmp;
 		}
 	}
+
 	str->length = str->length - len;
 	str->data[str->length] = '\0';
 	
@@ -169,9 +174,42 @@ void String__erase(String* str, size_t pos, size_t len) {
 }
 
 void String__replace(String* str, size_t pos, size_t len, const String* str_to_replace_with) {
-  // todo
+	
+	size_t old_len = str->length;
+	size_t new_len = (str->length-len) + str_to_replace_with->length;
+	char* tmp = realloc(str->data, new_len+1);
+	str->data = tmp;
+	
+
+	int it = old_len-len;
+	for(int i=str_to_replace_with->length + pos; i<new_len; i++) {
+		str->data[i] = str->data[it];
+		it++;
+	}
+	str->data[new_len] = '\0';
+
+	it = 0;
+	for(int i=pos; i<str_to_replace_with->length+pos; i++) {
+		str->data[i] = str_to_replace_with->data[it];
+		it++;
+	}
+	str->length = new_len;
+
 }
 
 void String__swap(String* str1, String* str2) {
-  // todo
+	
+	char* tmp1 = realloc(str1->data, str1->capacity);
+	char* tmp2 = realloc(str2->data, str2->capacity);
+	
+	size_t strLen = str1->length;
+	size_t strCap = str1->capacity;
+	str1->data = tmp2;
+	str1->length = str2->length;
+	str1->capacity = str2->capacity;
+	
+	str2->data = tmp1;
+	str2->length = strLen;
+	str2->capacity = strCap;
+	
 }

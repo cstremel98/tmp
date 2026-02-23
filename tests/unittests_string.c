@@ -179,7 +179,7 @@ Test(String, String__append_0, .disabled=false) {
   }
 }
 
-Test(String, String__push_back_0, .disabled=true) {
+Test(String, String__push_back_0, .disabled=false) {
   char* test_c_string = "Hello";
   String test_str = String__init(test_c_string);
 
@@ -214,7 +214,7 @@ Test(String, String__push_back_0, .disabled=true) {
 
 }
 
-Test(String, String__pop_back_0, .disabled=true) {
+Test(String, String__pop_back_0, .disabled=false) {
   char* test_c_string = "Hello";
   String test_str = String__init(test_c_string);
 
@@ -334,7 +334,6 @@ Test(String, String__erase_0, .disabled=false) {
     (strlen(test_c_string) - erase_length),
     "Incorrect post-erase length"
   );
-/*
   // Check if the characters were copied right
   int output_index = 0;
   // Check each letter of the output
@@ -349,10 +348,9 @@ Test(String, String__erase_0, .disabled=false) {
     );
     output_index++;
   }
-*/
 }
 
-Test(String, String__replace_0, .disabled=true) {
+Test(String, String__replace_0, .disabled=false) {
   char* test_c_string_1 = "Hello";
   String test_str_1 = String__init(test_c_string_1);
 
@@ -391,7 +389,6 @@ Test(String, String__replace_0, .disabled=true) {
     (strlen(test_c_string_1) - replacement_length + String__length(&test_str_2)),
     "Incorrect post-erase length"
   );
-
   // Check if the characters were copied right
   int output_index = 0;
   // First, check that the pre-insert offset letters are correct
@@ -415,10 +412,9 @@ Test(String, String__replace_0, .disabled=true) {
       test_str_1.data[output_index]
     );
   }
-
 }
 
-Test(String, String__swap_0, .disabled=true) {
+Test(String, String__swap_0, .disabled=false) {
   char* test_c_string_1 = "Hello";
   String test_str_1 = String__init(test_c_string_1);
 
